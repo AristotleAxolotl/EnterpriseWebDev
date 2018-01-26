@@ -117,28 +117,4 @@ function insertComment($givenComment){
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ?>
-
-
-
-
-
-
