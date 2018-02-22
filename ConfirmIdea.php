@@ -26,7 +26,7 @@ define (URLCONFIRM, "http://localhost/phpstormprojects/webenterprise/ConfirmIdea
 
 if ( isset($_POST['yesButton']) ) {
     DBConnect();
-    if ( insertIdea($extraInfo) == true) { echo "New Idea Inserted!"; } else { echo "There was a error!"; }
+    if ( insertIdea($extraInfo, $ideaTitle, $userID, $department) == true) { echo "New Idea Inserted!"; } else { echo "There was a error!"; }
     DBClose();
 }
 

@@ -26,8 +26,8 @@
 Please Select the Department for your idea:
     <select name="department">
         <option value = "">Select...</option>
-        <option value = "example1" <?php if ($_POST['department'] == 'example1') echo ' selected="selected"'; ?>>Example 1</option>
-        <option value = "example2" <?php if ($_POST['department'] == 'example2') echo ' selected="selected"'; ?>>Example 2</option>
+        <option value = "1" <?php if ($_POST['department'] == 'example1') echo ' selected="selected"'; ?>>Example 1</option>
+        <option value = "2" <?php if ($_POST['department'] == 'example2') echo ' selected="selected"'; ?>>Example 2</option>
     </select> <br /> <br />
 
 Enter a Title/Overview of your idea! <br />
