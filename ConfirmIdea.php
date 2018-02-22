@@ -18,7 +18,7 @@ define (URLCONFIRM, "http://localhost/phpstormprojects/webenterprise/ConfirmIdea
 <head>
 <title>New Idea</title>
 <meta name="Author" content="tb2683m@greenwich.ac.uk"/>
-<link href="mailform.css" rel="stylesheet" type="text/css" />
+<link href="entweb.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
