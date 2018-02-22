@@ -2,6 +2,7 @@
 ob_start();
 //Assuming we will have a session with userID
 $userID = 1;
+$id = 1;
 
 //$conn = new mysqli("mysql", "tp8149d", "tp8149d", "mdb_tp8149d");
 //Query that gets the idea info with how many like and dislike it has
@@ -13,8 +14,8 @@ if($_GET['id']) {
 include 'DBConnection.php';
 DBConnect();
 $checkLikes = getVotesTotal($id);
-$likes = $checkLikes[1];
-$dislikes = $checkLikes[0];
+$likes = $checkLikes[0];
+$dislikes = $checkLikes[1];
 
 //Storing all the values returned from the query above
     $ideas[] = getIdea($id);
@@ -30,48 +31,48 @@ if($type==$like)
 {
 //Check to see if the user has already like the idea
     $check = checkVote($id, $userID);
-    echo $check;
-    if ($check != false) {
+    if ($check == 1 || $check == 2 && $check != null) {
 //If they have liked the idea then tell them that they cant like it again
     if($check == 1) 
         {
             alert("Already liked this post");
             header("Refresh:0; url=ideaPage.php?id=$id");
         }
-    //If they dont lready like the idea
-        else
+		else
         {
             updateVote(1, $userID, $id);
             
-        } 
-        insertVote($id, 1, $userID);
-    }
-    //Refresh the page to see the updated likes
-   header("Refresh:0; url=ideaPage.php?id=$id");
+        }
+	} else {
+		insertVote($id, 1, $userID);				
+	}
+	header("Refresh:0; url=ideaPage.php?id=$id");
 }
+
+
 //If the user presses the dislike button
 elseif($type==$dislike) 
 {
-    if ($check = checkVote($id, $userID)){
+	$check = checkVote($id, $userID);
+    if ($check == 2 || $check == 1 && $check != null) {
 
-        if($check == 0) 
+        if($check == 2) 
             {
                 alert("Already disliked this post");
                 header("Refresh:0; url=ideaPage.php?id=$id");
             }
         else
             {
-                updateVote(0, $userID, $id);
+                updateVote(2, $userID, $id);
             } 
         
-            header("Refresh:0; url=ideaPage.php?id=$id");
+            
         } else { 
-            insertVote($id, 1, $userID);
+            insertVote($id, 2, $userID);
         }
-    
-    
+    header("Refresh:0; url=ideaPage.php?id=$id");
 }
-        }
+}
 DBClose();
 function alert($msg) 
 {
