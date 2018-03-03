@@ -43,17 +43,17 @@ include 'DBConnection.php';
 <div class="container">
 <div class="container-background">
 <p><b>The following section allows you to add or delete category</b></p>
-	<form action="ManagerProcess.php" method="post">
+	<form action="ManagerPage.php" method="post">
 		Enter New Category Name: <input type="text" name="categoryName">
 		<input type="submit" value="Add" class="btn btn-primary">
 	</form>
 <br>
-	<form action="ManagerProcess.php" method="post">
+	<form action="ManagerPage.php" method="post">
 		Enter Category ID: <input type="text" name="categoryID">
 		<input type="submit" value="Delete" class="btn btn-primary">
 	</form>
 <br><p><b>The following section allows you to edit an existing category</b></p>
-	<form action="ManagerProcess.php" method="post">
+	<form action="ManagerPage.php" method="post">
 		Enter Category ID: <input type="text" name="editCategoryID"><br><br>
 		Enter New Category Name: <input type="text" name="editCategoryName">
 		<input type="submit" value="Update" class="btn btn-primary">
@@ -67,6 +67,37 @@ include 'DBConnection.php';
 	  </tr>
 	<?php
 	DBConnect();
+	error_reporting(E_ERROR | E_PARSE);
+	$ID = $_POST["categoryID"];
+	$Name = $_POST["categoryName"];
+	$ID = $_POST["categoryID"];
+	$IDEdit = $_POST["editCategoryID"];
+	$NameEdit = $_POST["editCategoryName"];
+	
+	if ($Name != null){
+		if (insertCategory($Name) == true){
+			echo "The category name that you entered has been successfully added, please look at the table below for an updated list of all of the avaliable categories.";
+		} else {
+			echo "There was a error adding the new category";
+		}
+	}
+	
+	if ($ID != null){
+		if (deleteCategory($ID) == true){
+			echo "The category ID that you entered has been successfully deleted, please look at the table below for an updated list of all of the avaliable categories.";
+		} else {
+			echo "There was a error deleting the given category";
+		}
+		
+	}
+	
+	if ($IDEdit != null){
+		if (updateCategory($IDEdit, $NameEdit) == true){
+			echo "The category ID that you entered has been successfully updated, please lookmat the table below for an updated list of all of the avaliable categories.";
+		} else {
+			echo "There was a error updating the given category";
+		}
+	}
 	$categoriesID = getCategoriesID();
 	$categoriesType = getCategoriesType();
 	$count = 0;

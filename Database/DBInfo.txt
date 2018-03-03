@@ -1,0 +1,46 @@
+The following document aims to provide an overview of the database and all of the available functions on offer. 
+
+General functions
+
+•	DBConnection() – Used to open a connection to the database, using this before calling any other calls to the database.
+•	DBClose() – Used to close the connection to the database, use after all calls have been completed.
+
+User Information
+
+•	usernameSearch(username) – tests if a given username exists, returns a true or false value.
+•	passwordSearch(username, password) – tests if a given password matches the given username, returns a true or false value.
+•	insertUser(username, password, email, Department, AccountType) – Adds a new user to the database. Account Type can be either 1 for normal account, 2 for a QA manager and 3 for a admin.
+
+Idea Information
+
+•	ideaSearch() – returns an array containing all of the ideas in the database. This just returns the content column.
+•	getIdea(IdeaID) - returns an array containing all the information on an idea, positions are labeled in the file.
+•	insertIdea(IdeaContent, IdeaTitle, userID, categoryID) – Adds a new idea to the database.
+•	commentSerch(IdeaID) – Returns an array of all of the comments linked to the given idea.
+•	insertComment(Comment, userID, ideaID) – Adds a new comment to the database.
+•	insertCommentReply(Comment, userID, ideaID, replyID) – Adds a new comment to the database. Where replyID is the ID of the comment it is replying to.
+
+
+Voting Information
+
+•	As a result of booleans not working (may change it later), 1 is a posative vote and 2 is a negative vote.
+
+•	getVotesTotal(IdeaID) – Returns an array of the number of votes for an Idea, position 0 is likes and position 1 is dislikes.
+•	getPositiveVotes(IdeaID) – Returns the number of upvotes for an Idea.
+•	getNegativeVotes(IdeaID) – Returns the number of downvotes for an Idea.
+•	updateVote(givenVote, UserID, IdeaID) – Updates a users vote to be either a like or a dislike.
+•	insertVote(IdeaID, Vote, userID) – Adds a new vote into the database, vote is true for a positive and false for a negative.
+•	checkVote(IdeaID, UserID) – Checks if a user has voted for a idea, returns true or false. And returns the type of vote if they have.
+
+Admin (Category) functions
+
+•	getCategoryID() – Returns an array containing all category ID's.
+•	getCategoryType() – Returns an array containing all category Types.
+•	insertCategory(Category) – Adds a new category to the database.
+•	deleteCategory(CategoryID) – deletes the given category from the database.
+•	updateCategory(CategoryID, CategoryName) – sets the name of a category based on the given category ID.
+
+Functions to add
+
+•	Write any new functions that you want to be added here.
+
